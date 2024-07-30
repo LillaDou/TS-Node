@@ -17,5 +17,5 @@ const powers: Power[] = [
     },
 ];
 
-//Exportación por defecto
+//Exportación por defecto del arreglo de powers[]
 export default powers;
