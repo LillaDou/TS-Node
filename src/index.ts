@@ -1,25 +1,18 @@
-import { Hero } from "./classes/Hero"; //Export manual
-
-//* import powers from "./data/powers"; //Expor por defecto
-
-//Se puede crear alias de las importaciones añadiendo lo siguiente: 
-//* import { Hero as Superhero} from "./classes/Hero";
-//Luego utilizamos Superhero como el nombre de la clase
-
-//* import * as HeroClasses from "./classes/Hero";
-//Indicamos que queremos exportar todos los elementos exportados del archivo de Hero (*), 
-//y lo usaremos con el alias HeroClasses
-//Se usaría luego de la siguiente manera: 
-//const ironman = new HeroClasses.Hero(...)
+import { printObject, genericFunction } from "./generics/generics";
 
 
+//Función genérica: función que puede recibir cualquier tipo de argumento
+//Inconveniente: TS no está pendiente del posible tipo de los objetos. 
 
-const ironman = new Hero('IronMan', 1, 55);
+// printObject(123);
+// printObject( new Date() );
+// printObject( { a: 1, b: 2, c: 3 } );
+// printObject( [1,2,3,4,5,6,7] );
+// printObject( 'Hola Mundo' );
 
-console.log(ironman);
-console.log(ironman.power);
-
-
+console.log( genericFunction(3.141618).toFixed(2) );//toFixed es para números
+// console.log( genericFunction('Hola Mundo').toFixed(2) );//da error porque solo es para números, no string
+console.log( genericFunction( new Date() ).toFixed(2) );
 
 
 
