@@ -1,4 +1,4 @@
-import { printObject, genericFunction } from "./generics/generics";
+import { printObject, genericFunction, genericFunctionArrow } from './generics/generics';
 
 
 //Función genérica: función que puede recibir cualquier tipo de argumento
@@ -9,11 +9,17 @@ import { printObject, genericFunction } from "./generics/generics";
 // printObject( { a: 1, b: 2, c: 3 } );
 // printObject( [1,2,3,4,5,6,7] );
 // printObject( 'Hola Mundo' );
+const name: string = 'Fernando';
 
-console.log( genericFunction(3.141618).toFixed(2) );//toFixed es para números
-// console.log( genericFunction('Hola Mundo').toFixed(2) );//da error porque solo es para números, no string
-console.log( genericFunction( new Date() ).toFixed(2) );
+//Al hacer la función genérica, automáticamente identifica el tipo en base al argumento
+//que mandamos. 
+console.log( genericFunction(3.141618).toFixed(2) );//toFixed = números
+console.log( genericFunction( name ).toUpperCase() );//error = toFixed no es string
+console.log( genericFunction( new Date() ).getDate() );
 
+console.log( genericFunctionArrow(3.141618).toFixed(2) );
+console.log( genericFunctionArrow( name ).toUpperCase() );
+console.log( genericFunctionArrow( new Date() ).getDate() );
 
 
 
