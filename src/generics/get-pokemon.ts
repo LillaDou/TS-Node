@@ -9,3 +9,4 @@ export const getPokemon = async( pokemonId: number ): Promise<Pokemon> => {
 
     return data;
 }
+
