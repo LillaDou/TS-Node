@@ -1,6 +1,11 @@
-//Copiado del la página de quicktype.io. Copiamos del api de pokemon el JSON.
+//Podemos copiar las interfaces de la página de quicktype.io. Copiamos del api de pokemon el JSON.
 //Este lo pegamos en la página, y nos convierte toda la info en estas interfaces que
 //podemos luego utilizar más fácilmente en nuestras funciones genéricas
+
+//También podemos hacerlo a través de nuestra extensión de VSC.
+//Copiamos el JSON de la api, y en el command palette ponemos 'paste json as code``
+//Indicamos el nombre general de las inferfaces que queremos tener
+//y se crea automaticamente. 
 
 export interface Pokemon {
     abilities:                Ability[];
