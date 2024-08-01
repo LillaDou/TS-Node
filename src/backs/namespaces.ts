@@ -1,4 +1,4 @@
-import { Hero } from "./classes/Hero"; //Export manual
+import { Hero } from "../classes/Hero"; //Export manual
 
 //* import powers from "./data/powers"; //Expor por defecto
 
