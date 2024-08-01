@@ -5,6 +5,8 @@ function printToConsole( constructor: Function) {
     console.log(constructor)
 }
 
+
+
 //* Factory decorators: 
 //puede ser una función de flecha. Pero se suele ver como una función tradicional
 //Para ser un factory decorator, debe de retornar una función. 
@@ -18,8 +20,25 @@ const printToConsoleConditional = ( print: boolean = false ): Function => {
     }
 }
 
+
+
+//* Decorador para bloquear prototipo
+//este va a prevenir que accidentalmente/intencionadamente alguien vaya a hacer una
+//expansión de ciertas propiedades/métodos en una clase. 
+const bloquearPrototipo = function( constructor: Function) {
+    Object.seal( constructor )
+    Object.seal( constructor.prototype )
+}
+//Si no pusiésemos este decorador, tal y como vemos en el index, podríamos añadir 
+//el prototipo de Pikachu a nuestra clase. Con este decorador, no permitimos que se hagan
+//cambios al constructor y al prototipo, o en general, que se sobreescriban datos en nuestras clases 
+
+
+
+//Se pueden anidar decoradores. Se van a ejecutar en orden secuencial
 //@printToConsole
-@printToConsoleConditional( false ) //true o false en base a si queremos imprimirlo en consola
+@bloquearPrototipo
+@printToConsoleConditional( true ) //true o false en base a si queremos imprimirlo en consola
 export class Pokemon {
 
     public publicApi: string = 'https://pokeapi.co';
