@@ -9,4 +9,7 @@ const charmander = new Pokemon('Charmander');
 //un error
 
 // console.log(charmander);
-charmander.savePokemonToDB(50);
+// charmander.savePokemonToDB(50);
+
+charmander.publicApi = 'https:...';
+console.log(charmander);

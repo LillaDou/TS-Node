@@ -37,7 +37,7 @@ const bloquearPrototipo = function( constructor: Function) {
 //*Factory decorator para un método:
 //Target: dependerá de lo que coloquemos
 //PropertyKey: nombre de nuestro método para el cual pondremos el decorador
-//Descriptor: puede servir para hacer el read only
+//Descriptor: puede servir para hacer el read only. Solo se utiliza cuando queremos decorar un método. 
 function CheckValidPokemonId() {
     return function( target: any, propertyKey: string, descriptor: PropertyDescriptor) {
         
@@ -58,6 +58,36 @@ function CheckValidPokemonId() {
 }
 
 
+//*Decorador de propiedades - read-only
+//Es un factory decorator, por lo que debe de regresar otra función
+//Al decorar una propiedad, no existe un descriptor como tal. 
+//Cuando decoramos una propiedad, deberíamos retornar un property descriptor (crear el descriptor)
+//El this es una instancia de nuestra clase
+function readOnly ( isWritable: boolean = true ): Function {
+    return function( target: any, propertyKey: string ) {
+
+        const descriptor: PropertyDescriptor = {
+            get( ) {
+                console.log(this);
+                return 'Fernando';
+            },
+            set(this, val) {
+            //3 argumentos: this (instancia de la clase)
+            //propertyKey: nombre de la propiedad que vamos a decorar
+            //{}: Property Descriptor. Definimos cómo queremos que funcione
+                Object.defineProperty( this, propertyKey, {
+                    value: val,
+                    writable: !isWritable,
+                    enumerable: false,
+                })
+            }
+        }
+
+        return descriptor;
+    }
+}
+
+
 
 //Se pueden anidar decoradores. Se van a ejecutar en orden secuencial
 //@printToConsole
@@ -65,6 +95,7 @@ function CheckValidPokemonId() {
 @printToConsoleConditional( false ) //true o false en base a si queremos imprimirlo en consola
 export class Pokemon {
 
+    @readOnly()//si le ponemos false, si podemos hacer cambio. En true, solo es readonly
     public publicApi: string = 'https://pokeapi.co';
 
     constructor(
